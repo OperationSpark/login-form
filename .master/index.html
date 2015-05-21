@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Login Page</title>
+
+	<style>
+		/****************************
+		 * Write your CSS style code here
+		 ***************************/
+		body {
+		 	background-image: url(http://onebigphoto.com/uploads/2012/03/arches-national-park-utah.jpg);
+		 	background-size: 100%;
+		}
+
+	 	#login {
+	 		border: 1px solid black;
+	 		padding: 20px;
+	 		background-color: rgb(120,200,200);
+	 		width: 325px;
+	 		margin: 0 auto;
+
+	 	}
+
+	 	input {
+	 		width: 100%;
+	 	}
+
+	 	#errorMessage {
+	 		color: rgb(255,0,0);
+	 	}
+
+	 	#spinner {
+	 		display: none;
+	 		float: right;
+	 	}
+	</style>
+</head>
+
+<body>
+	<!-- -----------------------
+	 Write your HTML structure code here
+	 ----------------------- -->
+	 <div id="login">
+		 <form>
+		 	Username: <input id="username" type="text">
+		 	Password: <input id="password" type="password" >
+		 	<div id="errorMessage"></div>
+		 	<img id="spinner" src="spinner.gif">
+		 	<button id="loginButton" type="button" name="login">Login</button>
+		 </form>
+
+ 	</div>
+
+ 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+ 	<script src="login-exercise-lib.js"></script>
+	<script> 
+		'use strict'
+		/****************************
+		 * Write your Javascript behavior code here
+		 ***************************/
+		 var buttonElement = document.getElementById('loginButton');
+		 buttonElement.addEventListener('click',function() {
+			var usernameElement = document.getElementById('username');
+			var passwordElement = document.getElementById('password');
+			var errorMessageElement = document.getElementById('errorMessage');
+			var spinnerElement = document.getElementById('spinner');
+		 	var username = usernameElement.value;
+		 	var password = passwordElement.value;
+		 	buttonElement.setAttribute('disabled','disabled');
+		 	spinnerElement.style.display = 'block';
+		 	window.loginApp.loginWithCallback(username,password, function(success) {
+			 	buttonElement.removeAttribute('disabled');
+			 	spinnerElement.style.display = 'none';
+			 	if(success) {
+			 		window.location.href = 'http://i.imgur.com/zleA9GJ.gif';
+			 	}
+			 	else {
+			 		errorMessageElement.innerHTML = "Invalid username/password";
+			 	}
+		 	});
+		 });
+	</script>
+</body>
+</html>
