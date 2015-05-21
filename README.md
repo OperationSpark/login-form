@@ -61,7 +61,8 @@ Style the container div by giving it a width of 325 pixels
 
     width: 325px;
 
-Now style the inputs so that they take up the whole line in the container.
+Now change the layout of the form so that it mateches the image above. You will want to style the `<input>` elements so that they take up the entire
+width of their container.
 
 # 6 - Javascript Time!
 
